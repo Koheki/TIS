@@ -8,9 +8,3 @@ for a in range(-118,200):
 
 # https://img.atcoder.jp/abc166/editorial.pdf
 
-"""
-- concise
-- procedure
-- convey
-
-"""
