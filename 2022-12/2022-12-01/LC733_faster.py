@@ -7,8 +7,8 @@ class Solution:
         startcolor = image[sr][sc]
         image[sr][sc] = color
         m,n = len(image), len(image[0])
-        visited = [[False]*n for _ in range(m)]
-        visited[sr][sc] = True
+        visited = set()
+        visited.add((sr,sc))
         que = collections.deque([[sr,sc]])
 
         while que:
@@ -19,6 +19,6 @@ class Solution:
                 if 0 <= y < m and 0 <= x < n and image[y][x]== startcolor and not visited[y][x]:
                     image[y][x] = color
                     que.append([y,x])
-                    visited[y][x] = True
+                    visited.add((y,x))
 
         return image

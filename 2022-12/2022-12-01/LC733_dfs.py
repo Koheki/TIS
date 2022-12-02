@@ -7,18 +7,18 @@ class Solution:
         startcolor = image[sr][sc]
         image[sr][sc] = color
         m,n = len(image), len(image[0])
-        visited = [[False]*n for _ in range(m)]
-        visited[sr][sc] = True
-        que = collections.deque([[sr,sc]])
+        visited = set()
+        visited.add((sr,sc))
+        stack = [[sr,sc]]
 
-        while que:
-            r,c = que.popleft()
+        while stack:
+            r,c = stack.pop()
 
             for dy,dx in [[0,1],[0,-1],[1,0],[-1,0]]:
                 x,y = c+dx,r+dy
-                if 0 <= y < m and 0 <= x < n and image[y][x]== startcolor and not visited[y][x]:
+                if 0 <= y < m and 0 <= x < n and image[y][x]== startcolor and (y,x) not in visited:
                     image[y][x] = color
-                    que.append([y,x])
-                    visited[y][x] = True
+                    stack.append([y,x])
+                    visited.add((y,x))
 
         return image
